@@ -10,3 +10,7 @@ output "cloudfront_hosted_zone_id" {
 output "user_pool_arn" {
   value = aws_cognito_user_pool.default.arn
 }
+
+output "client_ids" {
+  value = {for k,v in var.clients : k => aws_cognito_user_pool_client.default[k].id}
+}
