@@ -14,3 +14,7 @@ output "user_pool_arn" {
 output "client_ids" {
   value = {for k,v in var.clients : k => aws_cognito_user_pool_client.default[k].id}
 }
+
+output "client_secrets" {
+  value = {for k,v in var.clients : k => aws_cognito_user_pool_client.default[k].client_secret}
+}
