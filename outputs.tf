@@ -11,6 +11,14 @@ output "user_pool_arn" {
   value = aws_cognito_user_pool.default.arn
 }
 
+output "user_pool_id" {
+  value = aws_cognito_user_pool.default.id
+}
+
+output "user_pool_endpoint" {
+  value = aws_cognito_user_pool.default.endpoint
+}
+
 output "client_ids" {
   value = {for k,v in var.clients : k => aws_cognito_user_pool_client.default[k].id}
 }
