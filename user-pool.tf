@@ -34,5 +34,18 @@ resource "aws_cognito_user_pool" "default" {
     sms_message          = "Your verification code is {####}."
   }
 
+  # dynamic block for attributes
+  dynamic "schema" {
+    for_each = var.attributes
+    content {
+      name = schema.value["name"]
+      attribute_data_type = schema.value["type"]
+      string_attribute_constraints {
+        max_length = schema.value["max_length"]
+        min_length = schema.value["min_length"]
+      }
+    }
+  }
+
   tags = var.tags
 }

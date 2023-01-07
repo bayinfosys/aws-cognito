@@ -13,8 +13,8 @@ resource "aws_cognito_user_pool_client" "default" {
   callback_urls = each.value.callback_urls
 
   # https://www.integralist.co.uk/posts/cognito/#terraform-example
-  read_attributes  = ["email"]
-  write_attributes = ["email"]
+  read_attributes  = concat(["email"], keys(var.attributes))
+  write_attributes = concat(["email"], keys(var.attributes))
 
   # FIXME: these logout urls are incorrect
   logout_urls                  = each.value.logout_urls

@@ -50,3 +50,13 @@ variable "invite_sms_message" {
   description = "sms invite message. Must contain {username} and {####} placeholders, for username and temporary password, respectively."
   default = "Your username is {username} and temporary password is {####}."
 }
+
+variable "attributes" {
+  type = map(object({
+    type = string
+    name = string
+    max_length = number
+    min_length = number
+  }))
+  description = "attributes available for each cognito account"
+}
